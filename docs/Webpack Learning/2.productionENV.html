@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>生产环境的搭建 | Yerts&#39;s Tech Blog</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    
+    <meta name="description" content="Wellcome to Yerts's Tech Blog">
+    
+    <link rel="preload" href="/TsBlog/assets/css/0.styles.2e159aff.css" as="style"><link rel="preload" href="/TsBlog/assets/js/app.d559f193.js" as="script"><link rel="preload" href="/TsBlog/assets/js/2.f87c9885.js" as="script"><link rel="preload" href="/TsBlog/assets/js/8.77370712.js" as="script"><link rel="prefetch" href="/TsBlog/assets/js/10.754c6082.js"><link rel="prefetch" href="/TsBlog/assets/js/11.9ef9f219.js"><link rel="prefetch" href="/TsBlog/assets/js/12.4cb8b5bf.js"><link rel="prefetch" href="/TsBlog/assets/js/13.0c2c477e.js"><link rel="prefetch" href="/TsBlog/assets/js/3.5507f96e.js"><link rel="prefetch" href="/TsBlog/assets/js/4.d5c7f100.js"><link rel="prefetch" href="/TsBlog/assets/js/5.0c2bdf9f.js"><link rel="prefetch" href="/TsBlog/assets/js/6.3228093c.js"><link rel="prefetch" href="/TsBlog/assets/js/7.471e33e4.js"><link rel="prefetch" href="/TsBlog/assets/js/9.dcf62339.js">
+    <link rel="stylesheet" href="/TsBlog/assets/css/0.styles.2e159aff.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/TsBlog/" class="home-link router-link-active"><!----> <span class="site-name">Yerts's Tech Blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/TsBlog/Webpack Learning/" class="sidebar-heading clickable open"><span>Webpack Learning</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/TsBlog/Webpack Learning/1.developmentENV.html" class="sidebar-link">开发环境的搭建</a></li><li><a href="/TsBlog/Webpack Learning/2.productionENV.html" class="active sidebar-link">生产环境的搭建</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/TsBlog/Webpack Learning/2.productionENV.html#对样式文件进行抽离" class="sidebar-link">对样式文件进行抽离</a></li><li class="sidebar-sub-header"><a href="/TsBlog/Webpack Learning/2.productionENV.html#解决样式文件的兼容性问题" class="sidebar-link">解决样式文件的兼容性问题</a></li><li class="sidebar-sub-header"><a href="/TsBlog/Webpack Learning/2.productionENV.html#压缩css文件" class="sidebar-link">压缩css文件</a></li><li class="sidebar-sub-header"><a href="/TsBlog/Webpack Learning/2.productionENV.html#js的语法检查eslint" class="sidebar-link">js的语法检查eslint</a></li><li class="sidebar-sub-header"><a href="/TsBlog/Webpack Learning/2.productionENV.html#js的兼容性处理" class="sidebar-link">js的兼容性处理</a></li><li class="sidebar-sub-header"><a href="/TsBlog/Webpack Learning/2.productionENV.html#压缩html与js文件" class="sidebar-link">压缩html与js文件</a></li><li class="sidebar-sub-header"><a href="/TsBlog/Webpack Learning/2.productionENV.html#处理loader的多loader加载情况" class="sidebar-link">处理loader的多loader加载情况</a></li></ul></li><li><a href="/TsBlog/Webpack Learning/3.performance.html" class="sidebar-link">webpack性能优化</a></li><li><a href="/TsBlog/Webpack Learning/4.codeSplit.html" class="sidebar-link">性能优化进阶</a></li><li><a href="/TsBlog/Webpack Learning/5.moreDetails.html" class="sidebar-link">webpack 配置详细</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="生产环境的搭建"><a href="#生产环境的搭建" class="header-anchor">#</a> 生产环境的搭建</h1> <hr> <ul><li>开发环境是能让代码运行，能够本地调试的环境即可</li> <li>生产环境是需要让代码优化上线的环境</li> <li>生产环境要实现的目标：
+<ul><li>将css文件从js内容里面抽离出来，因为不抽离出来的话将会出现闪屏的情况</li> <li>对代码进行压缩</li> <li>需要处理样式内容、逻辑内容的对浏览器兼容性的问题</li> <li>让代码更快更强</li> <li>需要在各个平台平稳的运行</li></ul></li></ul> <h2 id="对样式文件进行抽离"><a href="#对样式文件进行抽离" class="header-anchor">#</a> 对样式文件进行抽离</h2> <ul><li>对样式文件的抽离能够给用户带来很大的体验上的提升，因此是优化的第一步</li> <li>我们将会用到一个插件来帮我们做样式的抽离mini-css-extract-plugin</li> <li>可以将css提取出来成一个单独的文件，这个插件有自带的loader，因此也会用到他的loader，并且他的loader是作用在css-loader之后的，也就是取代style-loader</li> <li>使用的时候我们只需要从实例中返回loader就可以使用了</li> <li>使用步骤分别为：
+<ul><li>安装 ：<code>npm install --save -dev mini-css-extract-plugin</code></li> <li>创建一个实例 ：<code>const MiniCssExtractPlugin = reqire('mini-css-extract-plugin')</code></li> <li>在loader中使用 ：<code>use:[MiniCssExtractPlugin.loader,'css-loader']</code></li> <li>在插件中实例化：</li></ul></li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">let</span> productionConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token keyword">new</span> <span class="token class-name">HtmlWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            template<span class="token operator">:</span> <span class="token string">'./src/index.html'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword">new</span> <span class="token class-name">MiniCssExtractPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">}</span>
+</code></pre></div><ul><li>之后再运行构建命令的话我们会发现多出来了个main.css文件，并且这个文件也被index.html文件所引用，这一个文件里面将会包含所有的css内容</li> <li>如果我们想要将内容存放在dist目录的指定目录下面的话也可以通过添加参数filename的方式来完成，非常类似于output属性的设置</li> <li>我们可以将目录传进来，通过这种方式来实现对资源的组织</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">let</span> productionConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token keyword">new</span> <span class="token class-name">HtmlWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            template<span class="token operator">:</span> <span class="token string">'./src/index.html'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token keyword">new</span> <span class="token class-name">MiniCssExtractPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            filename<span class="token operator">:</span><span class="token string">'style/bundle.css'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">}</span>
+</code></pre></div><h2 id="解决样式文件的兼容性问题"><a href="#解决样式文件的兼容性问题" class="header-anchor">#</a> 解决样式文件的兼容性问题</h2> <ul><li>在处理样式的兼容性问题的时候我们是使用postcss来解决的，在webpack中使用的时候我们将会用到postcss-loader插件，并且需要postcss-preset-env来处理</li> <li>postcss-preset-env能够识别特定的环境，从而精确的加载相关配置</li> <li>在使用前我们需要先安装好这两个库</li></ul> <div class="language-powershell extra-class"><pre class="language-powershell"><code>    npm install <span class="token operator">--</span>save <span class="token operator">-</span>dev postcss<span class="token operator">-</span>loader postcss<span class="token operator">-</span>preset<span class="token operator">-</span>env
+</code></pre></div><ul><li>安装完之后就是使用了，我们会在css-loader之前使用这个loader，下面将会给出实际的配置</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span>
+    loader<span class="token operator">:</span><span class="token string">'postcss-loader'</span><span class="token punctuation">,</span>
+    options<span class="token operator">:</span><span class="token punctuation">{</span>
+        ident<span class="token operator">:</span><span class="token string">'postcss'</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">plugin</span><span class="token operator">:</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">[</span>
+            <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'postcss-preset-env'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>在这里的配置可能会有一些疑惑，我们将会进行解释</li> <li>options里面的第一个属性ident赋值为postcss是默认写法，不需要太深入</li> <li>之后的plugin实际上接受一个数组，数组里面的postcss-preset-env函数被请求出来之后就立即执行，将会载入一些场景信息，帮助找到package.json中的browsers-list</li> <li>通过配置指定加载相关的兼容性样式，下面将会给出一个范例，并且我们可以在github上找到现成的browsers-list的写法</li></ul> <div class="language-json extra-class"><pre class="language-json"><code><span class="token property">&quot;browserslist&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+    <span class="token property">&quot;development&quot;</span><span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token string">&quot;last 1 chrome version&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;last 1 firefox version&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;last 1 safari version&quot;</span>
+
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;production&quot;</span><span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token string">&quot;&gt;0.2%&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;no dead&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;not op_mini all&quot;</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>我们还需要设置一下node.js的环境变量，实际实现方法是：</li> <li>在webpack配置信息中添加一个<code>process.env.NODE_ENV='development'</code></li> <li>需要注意的是webpack4之后不能通过上面那种方式来使用postcss了，需要单独写一个配置文件，并将配置信息暴露出去</li> <li>也就是我们需要在根目录创建一个postcss-config.js的文件，文件内容就是</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code>module<span class="token punctuation">.</span>exports<span class="token operator">=</span><span class="token punctuation">{</span>
+    plugins<span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'postcss-preset-env'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>之后loader的配置直接写postcss-loader即可，并且在css-loader之前</li></ul> <h2 id="压缩css文件"><a href="#压缩css文件" class="header-anchor">#</a> 压缩css文件</h2> <ul><li>压缩css的插件是<code>optimize-css-assets-webpack-plugin</code></li> <li>压缩的工作相对于兼容性处理等工作较为复杂，因此将会使用插件来完成</li></ul> <div class="language-powershell extra-class"><pre class="language-powershell"><code>    npm install <span class="token operator">--</span>save <span class="token operator">-</span>dev <span class="token function">optimize-css</span><span class="token operator">-</span>assets<span class="token operator">-</span>webpack<span class="token operator">-</span>plugin
+</code></pre></div><ul><li>之后的操作就是引入插件，之后就在plugins选项中new一个插件的实例,之后打包的内容就会发现css资源已经被压缩</li></ul> <h2 id="js的语法检查eslint"><a href="#js的语法检查eslint" class="header-anchor">#</a> js的语法检查eslint</h2> <ul><li>语法检查可以帮助我们进行代码规范化等等</li> <li>我们将会用到eslint-loader跟eslint两个工具，分别提供处理js文件跟依赖安装的功能</li> <li>我们先安装这两者</li></ul> <div class="language-powershell extra-class"><pre class="language-powershell"><code>    npm install <span class="token operator">--</span>save <span class="token operator">-</span>dev eslint<span class="token operator">-</span>loader eslint
+</code></pre></div><ul><li>需要注意的是我们只想检查用户写的src目录下面的代码，因此需要一些特殊处理也就是exclude:/node_modules/</li> <li>还需要我们设置一些检查规则，这将会被写在package.json中的eslintConfig中</li> <li>我们将会使用airbnb的代码风格我们直接安装一个eslint-config-airbnb-base即可</li> <li>需要知道的是这个库依赖eslint跟eslint-plugin-import这两个库，因此我们要确保都安装成功</li></ul> <div class="language-powershell extra-class"><pre class="language-powershell"><code>    npm install <span class="token operator">--</span>save <span class="token operator">-</span>dev eslint eslint<span class="token operator">-</span>loader eslint<span class="token operator">-</span>plugin<span class="token operator">-</span>import eslint<span class="token operator">-</span>config<span class="token operator">-</span>airbnb<span class="token operator">-</span>base
+</code></pre></div><ul><li>安装完成之后就是写对应的配置信息了</li> <li>第一个地方就是使用对应的loader了</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span>
+    test<span class="token operator">:</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+    exclude<span class="token operator">:</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+    loader<span class="token operator">:</span><span class="token string">'eslint-loader'</span><span class="token punctuation">,</span>
+    options<span class="token operator">:</span><span class="token punctuation">{</span>
+        fix<span class="token operator">:</span><span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>我们在options里面加了个fix:true选项，这个选项会帮助我们自动修复出现的一些风格错误</li> <li>之后就在package.json中添加一个下面的选项即可</li></ul> <div class="language-json extra-class"><pre class="language-json"><code><span class="token property">&quot;eslintConfig&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+    <span class="token property">&quot;extends&quot;</span><span class="token operator">:</span><span class="token string">&quot;airbnb-base&quot;</span>
+  <span class="token punctuation">}</span>
+</code></pre></div><h2 id="js的兼容性处理"><a href="#js的兼容性处理" class="header-anchor">#</a> js的兼容性处理</h2> <ul><li>js的兼容性问题我们是使用Babel来进行解决的</li> <li>babel的options中有一个比较特殊的是presets，也就是预设，这个会告诉babel根据哪一个标准做兼容性处理,并且这两者都要依赖@babel/core跟babel，因此这个也要安装</li> <li>在webpack中我们需要安装babel-loader @babel/preset-env @babel/core</li></ul> <div class="language-powershell extra-class"><pre class="language-powershell"><code>     npm install babel<span class="token operator">-</span>loader @babel<span class="token operator">/</span>preset<span class="token operator">-</span>env @babel<span class="token operator">/</span>core babel <span class="token operator">--</span>save <span class="token operator">-</span>dev
+</code></pre></div><ul><li>安装完成之后就是配置信息的编写了</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span>
+    test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+    exclude<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+    loader<span class="token operator">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span>
+    options<span class="token operator">:</span> <span class="token punctuation">{</span>
+        presets<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'@babel/preset-env'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>@babel/preset-env 可以完成基本的兼容性处理</li> <li>上面的预设存在的问题就是只能完成基本的，比如promise之类的就不能进行转换了</li> <li>这样一来，我们在ie中使用的话就会出现错误</li> <li>因此我们需要一个能够处理所有兼容性问题的库，也就是@babel/polyfill</li> <li>这个包可以帮我们解决所有高级语法的兼容性问题</li></ul> <div class="language-powershell extra-class"><pre class="language-powershell"><code>    npm install <span class="token operator">--</span>save <span class="token operator">-</span>dev @babel<span class="token operator">/</span>polyfill
+</code></pre></div><ul><li>安装完之后我们只需要在源代码里面引入这个包就可以了，不用实际去配置</li> <li>我们会发现整个包的体积一下子变大了，这是因为polyfill里面包含了很多兼容性代码</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// index.js文件</span>
+<span class="token keyword">import</span> <span class="token string">'@babel/polyfill'</span>
+</code></pre></div><ul><li>但这也会导致一个问题就是我们的文件体积变大了很多，对性能优化很不好</li> <li>因此我们需要对兼容性代码的按需加载，也就是js兼容性问题的终极解决方案</li> <li>我们会用到corejs插件来帮我们完成这个功能</li></ul> <div class="language-powershell extra-class"><pre class="language-powershell"><code>    npm install <span class="token operator">--</span>save <span class="token operator">-</span>dev core<span class="token operator">-</span>js
+</code></pre></div><ul><li>安装完之后需要对Babel的配置进行一些修改，可以参考下面这种写法</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span>
+    test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+    exclude<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+    loader<span class="token operator">:</span> <span class="token string">'babel-loader'</span><span class="token punctuation">,</span>
+    options<span class="token operator">:</span> <span class="token punctuation">{</span>
+        presets<span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">[</span><span class="token string">'@babel/preset-env'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                useBuiltIns<span class="token operator">:</span> <span class="token string">'usage'</span><span class="token punctuation">,</span>
+                corejs<span class="token operator">:</span> <span class="token punctuation">{</span>
+                    version<span class="token operator">:</span> <span class="token number">3</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                targets<span class="token operator">:</span> <span class="token punctuation">{</span>
+                    chrome<span class="token operator">:</span> <span class="token string">'60'</span><span class="token punctuation">,</span>
+                    firefox<span class="token operator">:</span> <span class="token string">'60'</span><span class="token punctuation">,</span>
+                    ie<span class="token operator">:</span> <span class="token string">'9'</span><span class="token punctuation">,</span>
+                    safari<span class="token operator">:</span> <span class="token string">'10'</span><span class="token punctuation">,</span>
+                    edge<span class="token operator">:</span> <span class="token string">'17'</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">]</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>useBultIns表示按需加载</li> <li>corejs的version表示当前的corejs版本</li> <li>target表示需要兼容的浏览器</li></ul> <h2 id="压缩html与js文件"><a href="#压缩html与js文件" class="header-anchor">#</a> 压缩html与js文件</h2> <ul><li>js压缩我们直接将配置模式调整为生产环境即可，生产环境下将会对js文件进行一个压缩处理</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code>    <span class="token punctuation">{</span>
+        mode<span class="token operator">:</span><span class="token string">'production'</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><ul><li>html的压缩是在HtmlWebpackPlugin的基础上做的，我们只需要调整参数即可</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">new</span> <span class="token class-name">HtmlWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    template<span class="token operator">:</span> <span class="token string">'./src/index.html'</span><span class="token punctuation">,</span>
+    minify<span class="token operator">:</span><span class="token punctuation">{</span>
+        callapseWhiteSpace<span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span>
+        removeComments<span class="token operator">:</span><span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><ul><li>我们需要添加一个minify参数，并且传入两个配置项分别用于移除空格跟删除注释的功能</li></ul> <h2 id="处理loader的多loader加载情况"><a href="#处理loader的多loader加载情况" class="header-anchor">#</a> 处理loader的多loader加载情况</h2> <ul><li>需要注意的是通常情况下，我们的一个文件格式只能被一个loader流程来处理，比如css会经过style-loader，css-loader但是不会有另一个loader再来处理css</li> <li>但是我们已经遇到了两种不同功能的loader来处理同一种文件格式的情况，也就是我们的eslint-loader跟babel-loader都是处理js文件的</li> <li>这种时候我们一定要搞清楚loader的执行顺序，在这个情况下，我们会先执行eslint-loader之后再执行babel-loader</li> <li>因为eslint是做语法检查的，如果前期发现有语法问题的话实际上就不需要后续的兼容性处理了，因此就应该按照上面这种顺序来进行加载</li> <li>为了能够实现这种加载顺序，我们可以设置loader的enforce属性为pre，也就是优先执行</li></ul> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span>
+    test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+    exclude<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+    loader<span class="token operator">:</span> <span class="token string">'eslint-loader'</span><span class="token punctuation">,</span>
+    enforce<span class="token operator">:</span> <span class="token string">'pre'</span><span class="token punctuation">,</span>
+    options<span class="token operator">:</span> <span class="token punctuation">{</span>
+        fix<span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/TsBlog/Webpack Learning/1.developmentENV.html" class="prev">
+        开发环境的搭建
+      </a></span> <span class="next"><a href="/TsBlog/Webpack Learning/3.performance.html">
+        webpack性能优化
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/TsBlog/assets/js/app.d559f193.js" defer></script><script src="/TsBlog/assets/js/2.f87c9885.js" defer></script><script src="/TsBlog/assets/js/8.77370712.js" defer></script>
+  </body>
+</html>
