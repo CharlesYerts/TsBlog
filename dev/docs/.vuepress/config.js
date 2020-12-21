@@ -1,8 +1,11 @@
 module.exports={
-    title:"Yerts's Tech Blog",
+    title:"Yerts's Tech Blog | 特斯的技术博客",
     description: "Wellcome to Yerts's Tech Blog",
     base:'/TsBlog/',
     themeConfig: {
+    displayAllHeaders: true ,// 默认值：false
+    lastUpdated: 'Last Updated', // string | boolean
+    smoothScroll: true,
     sidebar: [
       {
           title:'Webpack Learning',
