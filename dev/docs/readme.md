@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /hero.png
+heroImage: /images/hero.png
 heroText: 特斯的技术博客
 tagline: Wellcome to My Blog
 actionText: 开始阅读
